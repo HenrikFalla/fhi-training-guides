@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #app {
@@ -13,5 +17,10 @@ body,
 body {
   margin: 0;
   font-family: var(--fhi-font-family-default);
+  font-weight: var(--fhi-font-weight-regular);
+  font-size: var(--fhi-typography-body-medium-font-size);
+  line-height: var(--fhi-typography-body-medium-line-height);
+  letter-spacing: var(--fhi-typography-body-medium-letter-spacing);
   background-color: var(--fhi-color-neutral-background-subtle);
+  color: var(--fhi-color-neutral-text-default);
 }

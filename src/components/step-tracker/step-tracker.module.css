@@ -1,17 +1,92 @@
 .stepTracker {
   position: sticky;
-  top: 0;
-  ol {
-    list-style: none;
+  top: var(--fhi-spacing-300);
+}
+
+@media (max-width: 900px) {
+  .stepTracker {
+    position: static;
   }
-  .stepNumber {
-    font-weight: bold;
-  }
-  .stepTitle {
-    font-weight: normal;
-  }
-  .completed span {
-    text-decoration: line-through;
-    color: var(--fhi-color-neutral-text-subtle);
-  }
+}
+
+.sidebarCard {
+  background-color: var(--fhi-color-neutral-background-default);
+  border: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+  border-radius: var(--fhi-border-radius-150);
+  padding: var(--fhi-spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fhi-spacing-200);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--fhi-spacing-150);
+}
+
+.sidebarSteps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fhi-spacing-050);
+}
+
+.sidebarStepItem {
+  border-radius: var(--fhi-border-radius-050);
+}
+
+.sidebarRefItem {
+  margin-top: var(--fhi-spacing-100);
+  padding: var(--fhi-spacing-100) 0;
+  border-top: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+  border-bottom: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+}
+
+.sidebarStepLink {
+  display: flex;
+  align-items: baseline;
+  gap: var(--fhi-spacing-100);
+  padding: var(--fhi-spacing-100) var(--fhi-spacing-150);
+  border-radius: var(--fhi-border-radius-050);
+  color: var(--fhi-color-neutral-text-default);
+  text-decoration: none;
+  font-size: var(--fhi-typography-body-small-font-size);
+  font-weight: var(--fhi-font-weight-medium);
+  transition: background-color var(--fhi-motion-duration-quick)
+    var(--fhi-motion-ease-default);
+}
+
+.sidebarStepLink:hover {
+  background-color: var(--fhi-color-neutral-surface-default);
+  color: var(--fhi-color-accent-base-default);
+}
+
+.stepNumber {
+  color: var(--fhi-color-neutral-text-subtle);
+  font-weight: var(--fhi-font-weight-bold);
+}
+
+.stepTitle {
+  line-height: var(--fhi-typography-body-small-line-height);
+}
+
+.isCompleted .sidebarStepLink {
+  text-decoration: line-through;
+  color: var(--fhi-color-neutral-text-subtle);
+  opacity: 0.75;
+}
+
+.isCompleted .stepNumber {
+  color: var(--fhi-color-success-text-default);
+}
+
+.sidebarActions {
+  display: flex;
 }

@@ -1,3 +1,96 @@
-.githubPagesPipeline {
-  position: relative;
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.guideLayout {
+  width: 100%;
+  max-width: calc(var(--fhi-spacing-1000) * 14);
+  margin: 0 auto var(--fhi-spacing-600) auto;
+  padding: 0 var(--fhi-spacing-250);
+  display: grid;
+  grid-template-columns: calc(var(--fhi-spacing-1000) * 3.8) minmax(0, 1fr);
+  gap: var(--fhi-spacing-400);
+  align-items: start;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .guideLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guideContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fhi-spacing-400);
+}
+
+.paragraph {
+  margin: 0;
+  color: var(--fhi-color-neutral-text-subtle);
+  font-size: var(--fhi-typography-body-medium-font-size);
+  line-height: var(--fhi-typography-body-medium-line-height);
+}
+
+.subheading {
+  margin: var(--fhi-spacing-100) 0 0 0;
+  font-family: var(--fhi-font-family-default);
+  font-weight: var(--fhi-font-weight-medium);
+  font-size: var(--fhi-typography-headline-small-font-size);
+  line-height: var(--fhi-typography-headline-small-line-height);
+  letter-spacing: var(--fhi-typography-headline-small-letter-spacing);
+  color: var(--fhi-color-neutral-text-default);
+}
+
+.instructionList,
+.explanationList {
+  margin: 0;
+  padding-left: var(--fhi-spacing-250);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fhi-spacing-100);
+  color: var(--fhi-color-neutral-text-default);
+  font-size: var(--fhi-typography-body-medium-font-size);
+  line-height: var(--fhi-typography-body-medium-line-height);
+}
+
+.instructionList strong,
+.explanationList strong {
+  font-weight: var(--fhi-font-weight-bold);
+}
+
+.inlineCode {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--fhi-typography-body-small-font-size);
+  background-color: var(--fhi-color-neutral-surface-default);
+  color: var(--fhi-color-neutral-text-default);
+  padding: calc(var(--fhi-spacing-050) / 2) var(--fhi-spacing-050);
+  border-radius: var(--fhi-border-radius-050);
+}
+
+.link {
+  color: var(--fhi-color-accent-base-default);
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: var(--fhi-color-accent-base-hover);
+}
+
+.siteFooter {
+  border-top: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+  padding: var(--fhi-spacing-300) 0;
+  text-align: center;
+  background-color: var(--fhi-color-neutral-background-default);
+}
+
+.footerContainer {
+  width: 100%;
+  max-width: calc(var(--fhi-spacing-1000) * 14);
+  margin: 0 auto;
+  padding: 0 var(--fhi-spacing-250);
 }

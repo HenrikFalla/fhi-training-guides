@@ -10,10 +10,8 @@ header {
     flex-direction: column;
     gap: var(--fhi-spacing-100);
     margin: 0 auto;
-    max-width: 900px;
-    width: fit-content;
-    fhi-display {
-      margin-left: var(--fhi-spacing-200);
-    }
+    max-width: 1120px;
+    padding: 0 var(--fhi-spacing-250);
+    width: 100%;
   }
 }

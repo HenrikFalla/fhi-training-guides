@@ -1,10 +1,25 @@
 import { useEffect, useState } from 'react'
 import type { Step } from '#/components/step-tracker/step-tracker'
 
+function isObligatoryComplete(steps: Step[], completedOrders: number[]) {
+  const obligatorySteps = steps.filter((s) => !s.optional)
+  return (
+    obligatorySteps.length > 0 &&
+    obligatorySteps.every((s) => completedOrders.includes(s.order))
+  )
+}
+
+function isAllComplete(steps: Step[], completedOrders: number[]) {
+  return (
+    steps.length > 0 && steps.every((s) => completedOrders.includes(s.order))
+  )
+}
+
 export function useGuideSteps(guideKey: string, initialSteps: Step[]) {
   const storageKey = `fhi-guide-progress:${guideKey}`
   const [completedOrders, setCompletedOrders] = useState<number[]>([])
   const [isHydrated, setIsHydrated] = useState(false)
+  const [celebrationCount, setCelebrationCount] = useState(0)
 
   // 1. Load saved progress from localStorage on client mount
   useEffect(() => {
@@ -29,7 +44,7 @@ export function useGuideSteps(guideKey: string, initialSteps: Step[]) {
     }
   }, [completedOrders, storageKey, isHydrated])
 
-  // 3. Optional: Keep multiple open tabs in sync
+  // 3. Keep multiple open tabs in sync
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === storageKey) {
@@ -45,6 +60,27 @@ export function useGuideSteps(guideKey: string, initialSteps: Step[]) {
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [storageKey])
 
+  const updateWithCelebrationCheck = (
+    computeNext: (prev: number[]) => number[],
+  ) => {
+    setCompletedOrders((prev) => {
+      const next = computeNext(prev)
+      const wasObligatoryDone = isObligatoryComplete(initialSteps, prev)
+      const wasAllDone = isAllComplete(initialSteps, prev)
+      const nowObligatoryDone = isObligatoryComplete(initialSteps, next)
+      const nowAllDone = isAllComplete(initialSteps, next)
+
+      if (
+        (nowObligatoryDone && !wasObligatoryDone) ||
+        (nowAllDone && !wasAllDone)
+      ) {
+        setCelebrationCount((c) => c + 1)
+      }
+
+      return next
+    })
+  }
+
   // Derive the full Step[] list from initialSteps + completedOrders
   const steps: Step[] = initialSteps.map((step) => ({
     ...step,
@@ -52,13 +88,13 @@ export function useGuideSteps(guideKey: string, initialSteps: Step[]) {
   }))
 
   const toggleStep = (order: number) => {
-    setCompletedOrders((prev) =>
+    updateWithCelebrationCheck((prev) =>
       prev.includes(order) ? prev.filter((o) => o !== order) : [...prev, order],
     )
   }
 
   const setStepCompleted = (order: number, completed: boolean) => {
-    setCompletedOrders((prev) => {
+    updateWithCelebrationCheck((prev) => {
       if (completed && !prev.includes(order)) return [...prev, order]
       if (!completed) return prev.filter((o) => o !== order)
       return prev
@@ -77,6 +113,7 @@ export function useGuideSteps(guideKey: string, initialSteps: Step[]) {
   return {
     steps,
     isHydrated,
+    celebrationCount,
     toggleStep,
     setStepCompleted,
     resetSteps,

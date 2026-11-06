@@ -1,0 +1,41 @@
+.codeBlock {
+  border: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+  border-radius: var(--fhi-border-radius-100);
+  overflow: hidden;
+  background-color: var(--fhi-color-neutral-background-subtle);
+}
+
+.codeBlockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--fhi-spacing-150);
+  padding: var(--fhi-spacing-100) var(--fhi-spacing-200);
+  background-color: var(--fhi-color-neutral-surface-default);
+  border-bottom: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+}
+
+.codeLabel {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--fhi-typography-body-small-font-size);
+  font-weight: var(--fhi-font-weight-bold);
+  color: var(--fhi-color-neutral-text-subtle);
+}
+
+.pre {
+  margin: 0;
+  padding: var(--fhi-spacing-200);
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: var(--fhi-typography-body-small-font-size);
+  color: var(--fhi-color-neutral-text-default);
+}
