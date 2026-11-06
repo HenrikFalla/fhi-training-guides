@@ -10,33 +10,44 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GithubPagesPipelineIndexRouteImport } from './routes/github-pages-pipeline/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GithubPagesPipelineIndexRoute =
+  GithubPagesPipelineIndexRouteImport.update({
+    id: '/github-pages-pipeline/',
+    path: '/github-pages-pipeline/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/github-pages-pipeline/': typeof GithubPagesPipelineIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/github-pages-pipeline': typeof GithubPagesPipelineIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/github-pages-pipeline/': typeof GithubPagesPipelineIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/github-pages-pipeline/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/github-pages-pipeline'
+  id: '__root__' | '/' | '/github-pages-pipeline/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GithubPagesPipelineIndexRoute: typeof GithubPagesPipelineIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +59,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/github-pages-pipeline/': {
+      id: '/github-pages-pipeline/'
+      path: '/github-pages-pipeline'
+      fullPath: '/github-pages-pipeline/'
+      preLoaderRoute: typeof GithubPagesPipelineIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GithubPagesPipelineIndexRoute: GithubPagesPipelineIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -10,7 +10,8 @@ header {
     flex-direction: column;
     gap: var(--fhi-spacing-100);
     margin: 0 auto;
-    max-width: 750px;
+    max-width: 900px;
+    width: fit-content;
     fhi-display {
       margin-left: var(--fhi-spacing-200);
     }

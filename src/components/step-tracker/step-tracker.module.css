@@ -1,0 +1,17 @@
+.stepTracker {
+  position: sticky;
+  top: 0;
+  ol {
+    list-style: none;
+  }
+  .stepNumber {
+    font-weight: bold;
+  }
+  .stepTitle {
+    font-weight: normal;
+  }
+  .completed span {
+    text-decoration: line-through;
+    color: var(--fhi-color-neutral-text-subtle);
+  }
+}
