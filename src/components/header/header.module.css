@@ -1,0 +1,18 @@
+header {
+  display: flex;
+  padding: var(--fhi-spacing-400) 0;
+  border-bottom: var(--fhi-dimension-border-width) solid
+    var(--fhi-color-neutral-border-subtle);
+  background-color: var(--fhi-color-neutral-background-default);
+  width: 100%;
+  .headerContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fhi-spacing-100);
+    margin: 0 auto;
+    max-width: 750px;
+    fhi-display {
+      margin-left: var(--fhi-spacing-200);
+    }
+  }
+}

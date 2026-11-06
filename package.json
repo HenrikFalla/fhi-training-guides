@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "vite build",
+    "generate-types": "node scripts/generate-fhi-types.mjs",
+    "postinstall": "node scripts/generate-fhi-types.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint",
@@ -15,6 +17,7 @@
     "check": "prettier --check ."
   },
   "dependencies": {
+    "@folkehelseinstituttet/designsystem": "^0.48.1",
     "@tanstack/react-devtools": "0.10.14",
     "@tanstack/react-query": "5.106.1",
     "@tanstack/react-query-devtools": "5.106.1",
@@ -35,6 +38,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "@wc-toolkit/jsx-types": "^1.8.2",
     "eslint": "^9.20.0",
     "prettier": "^3.8.1",
     "typescript": "^6.0.2",
